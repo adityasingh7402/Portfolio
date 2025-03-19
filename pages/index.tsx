@@ -10,9 +10,9 @@ import { useState, useEffect } from 'react';
 import { Github, Mail, Linkedin, Instagram, ExternalLink, Circle, Triangle, Square, FileDown, MapPin, Calendar, Code, Server, Database } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ModeToggle } from "@/components/mode-toggle";
-import { SkillBar } from "@/components/skill-bar";
-import { ParticlesBackground } from "@/components/particles-background";
+import { ModeToggle } from "../components/mode-toggle";
+import { SkillBar } from "../components/skill-bar";
+import { ParticlesBackground } from "../components/particles-background";
 import Image from 'next/image';
 import Head from 'next/head';
 
@@ -109,8 +109,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Aditya Kumar - Software Developer</title>
-        <meta name="description" content="Personal portfolio website of Aditya Kumar, a software developer specializing in web development." />
+        <title>Aditya Kumar - Full-stack Developer</title>
+        <meta name="description" content="Personal portfolio website of Aditya Kumar, a Full-stack Developer specializing in web development." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
