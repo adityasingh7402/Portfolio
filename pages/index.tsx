@@ -109,8 +109,8 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Aditya Kumar - Software Developer</title>
-        <meta name="description" content="Personal portfolio website of Aditya Kumar, a software developer specializing in web development." />
+        <title>Aditya Kumar - Full-stack Developer</title>
+        <meta name="description" content="Personal portfolio website of Aditya Kumar, a Full-stack Developer specializing in web development." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
