@@ -513,7 +513,7 @@ export default function Home() {
                       transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
                     >
                       <Image
-                        src="./profile.jpg"
+                        src="./profile2.png"
                         alt="Aditya Kumar"
                         fill
                         className="object-cover"
