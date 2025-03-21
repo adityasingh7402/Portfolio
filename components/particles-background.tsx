@@ -19,7 +19,7 @@ export function ParticlesBackground() {
 
   return (
     <Particles
-      className="absolute inset-0 -z-10"
+      className="absolute inset-0"
       id="tsparticles"
       init={particlesInit}
       loaded={particlesLoaded}
