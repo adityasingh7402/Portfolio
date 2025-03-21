@@ -7,7 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import 'swiper/css/grid';
 import { useState, useEffect, useRef } from 'react';
-import { Github, Mail, Linkedin, Instagram, ExternalLink, Circle, Triangle, Square, FileDown, MapPin, Calendar, Code, Server, Database, Menu, X, Send, Phone } from 'lucide-react';
+import { Github, Mail, Linkedin, Instagram, ExternalLink, Circle, Triangle, Square, CheckCircle, FileDown, MapPin, Calendar, Code, Server, Database, Menu, X, Send, Phone } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ParticlesBackground } from "@/components/particles-background";
@@ -24,6 +24,8 @@ export default function Home() {
   const [isVisible, setIsVisible] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -32,6 +34,36 @@ export default function Home() {
   const aboutRef = useRef<HTMLElement>(null);
   const projectsRef = useRef<HTMLElement>(null);
   const contactRef = useRef<HTMLElement>(null);
+
+  const handleSubmit = async (e: { preventDefault: () => void; target: any; }) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    try {
+      const form = e.target;
+      const formData = new FormData(form);
+      
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      });
+      
+      if (response.ok) {
+        setShowSuccess(true);
+        form.reset();
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+          setShowSuccess(false);
+        }, 5000);
+      } else {
+        console.error('Form submission failed');
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   useEffect(() => {
     const checkMobile = () => {
@@ -362,7 +394,7 @@ export default function Home() {
         </AnimatePresence>
 
         <main className="pt-28 px-4 md:px-6 lg:px-12 xl:px-0">
-        <ParticlesBackground />
+          <ParticlesBackground />
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSection}
@@ -499,7 +531,7 @@ export default function Home() {
                       <span>About Me</span>
                       <motion.div
                         className="h-[1px] w-0 bg-primary/30"
-                        animate={{ width: 128 }}
+                        animate={{ width: 100 }}
                         transition={{ delay: 0.5, duration: 0.8 }}
                       ></motion.div>
                     </h2>
@@ -665,7 +697,7 @@ export default function Home() {
                       <span>Featured Projects</span>
                       <motion.div
                         className="h-[1px] w-0 bg-primary/30"
-                        animate={{ width: 128 }}
+                        animate={{ width: 25 }}
                         transition={{ delay: 0.5, duration: 0.8 }}
                       ></motion.div>
                     </h2>
@@ -712,7 +744,7 @@ export default function Home() {
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">Patti Winner</h3>
                         <Card className="bg-card/30 backdrop-blur-sm p-6 mb-6 border-primary/20 shadow-lg">
                           <p className="text-muted-foreground leading-relaxed">
-                          An interactive single-player card game built with Next.js, featuring smooth animations and a seamless user experience. Integrated with MongoDB for user progress tracking and leaderboards.
+                            An interactive single-player card game built with Next.js, featuring smooth animations and a seamless user experience. Integrated with MongoDB for user progress tracking and leaderboards.
                           </p>
                         </Card>
                         <div className="flex flex-wrap gap-3 mb-6">
@@ -759,7 +791,7 @@ export default function Home() {
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">KindnessNetwork</h3>
                         <Card className="bg-card/30 backdrop-blur-sm p-6 mb-6 border-primary/20 shadow-lg">
                           <p className="text-muted-foreground leading-relaxed">
-                          A platform connecting donors with NGOs for impactful contributions. Built with Next.js and MongoDB, featuring real-time updates, secure payment integration, and comprehensive analytics dashboard.
+                            A platform connecting donors with NGOs for impactful contributions. Built with Next.js and MongoDB, featuring real-time updates, secure payment integration, and comprehensive analytics dashboard.
                           </p>
                         </Card>
                         <div className="flex flex-wrap gap-3 mb-6">
@@ -868,7 +900,7 @@ export default function Home() {
                         <h3 className="text-2xl md:text-3xl font-bold mb-4">Fountainaqua</h3>
                         <Card className="bg-card/30 backdrop-blur-sm p-6 mb-6 border-primary/20 shadow-lg">
                           <p className="text-muted-foreground leading-relaxed">
-                          Created an e-commerce site for purchasing water from multiple brands. Utilized WordPress and Elementor to design and implement a user-friendly shopping experience, allowing customers to easily browse and purchase products.
+                            Created an e-commerce site for purchasing water from multiple brands. Utilized WordPress and Elementor to design and implement a user-friendly shopping experience, allowing customers to easily browse and purchase products.
                           </p>
                         </Card>
                         <div className="flex flex-wrap gap-3 mb-6">
@@ -907,7 +939,7 @@ export default function Home() {
                       transition={{ duration: 0.5, delay: 0.6 }}
                     >
                       <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                        
+
                       </motion.div>
                     </motion.div>
                   </div>
@@ -931,7 +963,7 @@ export default function Home() {
                       <span>Get In Touch</span>
                       <motion.div
                         className="h-[1px] w-0 bg-primary/30"
-                        animate={{ width: 128 }}
+                        animate={{ width: 100 }}
                         transition={{ delay: 0.5, duration: 0.8 }}
                       ></motion.div>
                     </h2>
@@ -1033,7 +1065,19 @@ export default function Home() {
                       transition={{ duration: 0.5, delay: 0.4 }}
                     >
                       <Card className="p-6 border-primary/20 overflow-hidden relative bg-card/30 backdrop-blur-sm">
-                        <form className="space-y-4">
+                        <form
+                          className="space-y-4"
+                          action="https://api.web3forms.com/submit"
+                          method="POST"
+                          onSubmit={handleSubmit}
+                        >
+                          <input
+                            type="hidden"
+                            name="access_key"
+                            value="0c5a5cf4-2404-4aef-a0e6-88bc1f001117"
+                          />
+
+                          {/* Name Field */}
                           <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -1045,11 +1089,14 @@ export default function Home() {
                             <input
                               type="text"
                               id="name"
+                              name="name"
                               className="w-full p-3 rounded-lg bg-background/80 border border-primary/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-colors"
                               placeholder="John Doe"
+                              required
                             />
                           </motion.div>
 
+                          {/* Email Field */}
                           <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -1061,11 +1108,14 @@ export default function Home() {
                             <input
                               type="email"
                               id="email"
+                              name="email"
                               className="w-full p-3 rounded-lg bg-background/80 border border-primary/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-colors"
                               placeholder="john@example.com"
+                              required
                             />
                           </motion.div>
 
+                          {/* Subject Field */}
                           <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -1077,11 +1127,14 @@ export default function Home() {
                             <input
                               type="text"
                               id="subject"
+                              name="subject"
                               className="w-full p-3 rounded-lg bg-background/80 border border-primary/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-colors"
                               placeholder="Project Inquiry"
+                              required
                             />
                           </motion.div>
 
+                          {/* Message Field */}
                           <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -1092,12 +1145,15 @@ export default function Home() {
                             </label>
                             <textarea
                               id="message"
+                              name="message"
                               rows={5}
                               className="w-full p-3 rounded-lg bg-background/80 border border-primary/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-colors"
                               placeholder="Hi Aditya, I'd like to talk about..."
+                              required
                             />
                           </motion.div>
 
+                          {/* Submit Button */}
                           <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -1107,8 +1163,9 @@ export default function Home() {
                             <Button
                               type="submit"
                               className="w-full py-6 text-base group"
+                              disabled={isSubmitting}
                             >
-                              Send Message
+                              {isSubmitting ? 'Sending...' : 'Send Message'}
                               <motion.div
                                 initial={{ x: 0 }}
                                 animate={{ x: [0, 5, 0] }}
@@ -1119,6 +1176,98 @@ export default function Home() {
                             </Button>
                           </motion.div>
                         </form>
+
+                        {/* Success Popup */}
+                        <AnimatePresence>
+                          {showSuccess && (
+                            <motion.div
+                              initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                              animate={{ opacity: 1, scale: 1, y: 0 }}
+                              exit={{ opacity: 0, scale: 0.8, y: 20 }}
+                              transition={{ type: "spring", damping: 15, stiffness: 300 }}
+                              className="fixed inset-0 flex items-center justify-center z-50"
+                            >
+                              <motion.div
+                                className="absolute inset-0 bg-black/40 backdrop-blur-sm"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                onClick={() => setShowSuccess(false)}
+                              />
+
+                              <motion.div
+                                className="bg-white dark:bg-gray-800 rounded-xl shadow-2xl p-6 max-w-md w-full mx-4 z-10 relative overflow-hidden"
+                                initial={{ y: 50 }}
+                                animate={{ y: 0 }}
+                                exit={{ y: 50 }}
+                              >
+                                {/* Success icon with animation */}
+                                <motion.div
+                                  className="flex justify-center mb-4"
+                                  initial={{ scale: 0 }}
+                                  animate={{ scale: 1, rotate: [0, 15, -15, 0] }}
+                                  transition={{ delay: 0.2, duration: 0.5 }}
+                                >
+                                  <div className="relative">
+                                    <motion.div
+                                      className="absolute inset-0 bg-green-500/20 rounded-full"
+                                      initial={{ scale: 0 }}
+                                      animate={{ scale: [1, 1.5, 1] }}
+                                      transition={{ repeat: Infinity, repeatDelay: 2, duration: 1 }}
+                                    />
+                                    <CheckCircle className="h-16 w-16 text-green-500" />
+                                  </div>
+                                </motion.div>
+
+                                {/* Success message */}
+                                <motion.h3
+                                  className="text-xl font-bold text-center text-gray-900 dark:text-white mb-2"
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.3 }}
+                                >
+                                  Message Sent Successfully!
+                                </motion.h3>
+
+                                <motion.p
+                                  className="text-gray-600 dark:text-gray-300 text-center mb-6"
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.4 }}
+                                >
+                                  Thank you for reaching out. I'll get back to you as soon as possible.
+                                </motion.p>
+
+                                {/* Close button */}
+                                <motion.div
+                                  initial={{ opacity: 0, y: 10 }}
+                                  animate={{ opacity: 1, y: 0 }}
+                                  transition={{ delay: 0.5 }}
+                                  className="flex justify-center"
+                                >
+                                  <Button
+                                    onClick={() => setShowSuccess(false)}
+                                    className="bg-green-500 hover:bg-green-600 text-white"
+                                  >
+                                    Got it!
+                                  </Button>
+                                </motion.div>
+
+                                {/* Animated shapes in background */}
+                                <motion.div
+                                  className="absolute -top-16 -right-16 w-32 h-32 rounded-full bg-green-500/10"
+                                  animate={{ scale: [1, 1.2, 1], rotate: 360 }}
+                                  transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+                                />
+                                <motion.div
+                                  className="absolute -bottom-10 -left-10 w-24 h-24 rounded-full bg-green-500/10"
+                                  animate={{ scale: [1.2, 1, 1.2], rotate: -360 }}
+                                  transition={{ repeat: Infinity, duration: 8, ease: "linear" }}
+                                />
+                              </motion.div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
 
                         <motion.div
                           className="absolute -bottom-12 -right-12 w-40 h-40 bg-primary/10 rounded-full blur-3xl"
