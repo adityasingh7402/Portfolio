@@ -6,8 +6,12 @@ import type { Metadata } from 'next'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Aditya Kumar - Software Developer',
-  description: 'Personal portfolio website of Aditya Kumar, a software developer specializing in web development.',
+  title: 'Aditya Kumar - Full-stack Developer',
+  description: 'Personal portfolio website of Aditya Kumar, a Full-stack developer specializing in web development.',
+  icons: {
+    icon: '/favicon.ico.png',
+    shortcut: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({

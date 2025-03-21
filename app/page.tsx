@@ -371,7 +371,7 @@ export default function Home() {
                   <motion.button
                     key={section}
                     onClick={() => scrollToSection(section)}
-                    className={`capitalize text-2xl font-medium py-3 ${activeSection === section ? 'text-primary font-semibold' : 'text-muted-foreground'}`}
+                    className={`capitalize select-none text-2xl font-medium py-3 ${activeSection === section ? 'text-primary font-semibold' : 'text-muted-foreground'}`}
                     variants={menuItemVariants}
                     custom={index}
                     transition={{ delay: index * 0.1 }}
