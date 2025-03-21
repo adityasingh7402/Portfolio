@@ -1,10 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  eslint: {
-    ignoreDuringBuilds: true,
+  images: { 
+    unoptimized: true,
+    domains: ['images.unsplash.com']
   },
-  images: { unoptimized: true },
+  // Disable SWC minifier to prevent native addon loading issues
+  swcMinify: false
 };
 
 module.exports = nextConfig;

@@ -10,9 +10,9 @@ import { useState, useEffect } from 'react';
 import { Github, Mail, Linkedin, Instagram, ExternalLink, Circle, Triangle, Square, FileDown, MapPin, Calendar, Code, Server, Database } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { ParticlesBackground } from "@/components/particles-background"
 import { ModeToggle } from "../components/mode-toggle";
 import { SkillBar } from "../components/skill-bar";
-import { ParticlesBackground } from "../components/particles-background";
 import Image from 'next/image';
 import Head from 'next/head';
 
@@ -116,7 +116,6 @@ export default function Home() {
 
       <div className="min-h-screen relative overflow-hidden bg-background">
         <ParticlesBackground />
-
         {/* Social Icons - Desktop */}
         {!isMobile && (
           <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex flex-col gap-8">
@@ -218,12 +217,12 @@ export default function Home() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
                 <div className="space-y-6 text-muted-foreground">
                   <p className="text-base leading-relaxed">
-                    I'm a passionate full-stack developer with experience in building web applications
+                    I&#39;m a passionate full-stack developer with experience in building web applications
                     using modern technologies. My journey began with an internship at eWeblink Web Design
                     and Development, where I honed my skills in HTML, CSS, JavaScript, and WordPress.
                   </p>
                   <p className="text-base leading-relaxed">
-                    Currently working as a freelance developer, I've expanded my expertise to include
+                    Currently working as a freelance developer, I&#39;ve expanded my expertise to include
                     Node.js, Next.js, MongoDB, APIs, and SQL. I focus on creating accessible,
                     user-friendly applications that solve real-world problems.
                   </p>
@@ -239,10 +238,7 @@ export default function Home() {
                     </div>
                   </div>
                   <div className="space-y-6 mt-12">
-                    <h3 className="text-2xl font-semibold text-foreground flex items-center gap-2">
-                      <span className="text-primary">//</span> Technical Skills
-                    </h3>
-
+                    <h3 className="text-2xl font-semibold text-foreground flex items-center gap-2"> <span className="text-primary">#</span> Technical Skills</h3>
                     <Swiper
                       slidesPerView={1} // Default: Show 1 slide at a time on mobile
                       spaceBetween={10}
@@ -433,12 +429,12 @@ export default function Home() {
           <section id="contact" className="min-h-screen py-32 flex items-center justify-center section-slide-up">
             <div className="max-w-2xl text-center px-4">
               <div className="p-1 bg-primary/10 rounded-lg inline-block mb-4">
-                <p className="text-primary font-medium px-3 py-1">What's Next?</p>
+                <p className="text-primary font-medium px-3 py-1">What&#39;s Next?</p>
               </div>
               <h2 className="text-4xl md:text-5xl font-bold mb-8">Get In Touch</h2>
               <p className="text-xl text-muted-foreground mb-12 leading-relaxed">
-                I'm currently looking for new opportunities in full-stack development.
-                Whether you have a question or just want to say hi, I'll try my best to get back to you!
+                I&#39;m currently looking for new opportunities in full-stack development.
+                Whether you have a question or just want to say hi, I&#39;ll try my best to get back to you!
               </p>
               <Button size="lg" className="text-lg px-10 py-7" asChild>
                 <a href="mailto:adityasingh7402@gmail.com">Say Hello</a>

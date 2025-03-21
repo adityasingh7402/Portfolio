@@ -30,7 +30,7 @@ export function ParticlesBackground() {
         fpsLimit: 60,
         particles: {
           color: {
-            value: theme === 'dark' ? '#ffffff' : '#000000',
+            value: theme === 'dark' ? '#ffffff' : '#000000'
           },
           links: {
             color: theme === 'dark' ? '#ffffff' : '#000000',
