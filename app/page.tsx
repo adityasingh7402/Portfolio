@@ -1235,7 +1235,7 @@ export default function Home() {
                                   animate={{ opacity: 1, y: 0 }}
                                   transition={{ delay: 0.4 }}
                                 >
-                                  Thank you for reaching out. I'll get back to you as soon as possible.
+                                  Thank you for reaching out. I&#39;ll get back to you as soon as possible.
                                 </motion.p>
 
                                 {/* Close button */}
