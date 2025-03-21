@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Navigation, Grid } from 'swiper/modules';
+import { Autoplay, Pagination, Grid } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
@@ -14,6 +14,7 @@ import { ParticlesBackground } from "@/components/particles-background";
 import { ModeToggle } from "../components/mode-toggle";
 import { SkillBar } from "../components/skill-bar";
 import Image from 'next/image';
+import { TypeAnimation } from 'react-type-animation';
 import Head from 'next/head';
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname, useRouter } from 'next/navigation';
@@ -26,8 +27,6 @@ export default function Home() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
-  const router = useRouter();
-  const pathname = usePathname();
 
   // Refs for sections
   const homeRef = useRef<HTMLElement>(null);
@@ -38,16 +37,16 @@ export default function Home() {
   const handleSubmit = async (e: { preventDefault: () => void; target: any; }) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       const form = e.target;
       const formData = new FormData(form);
-      
+
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: formData
       });
-      
+
       if (response.ok) {
         setShowSuccess(true);
         form.reset();
@@ -434,7 +433,26 @@ export default function Home() {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 }}
                     >
-                      Full-stack Developer
+                      <TypeAnimation
+                        sequence={[
+                          'Full-stack Developer', // Text to display
+                          2000, // Delay before deleting
+                          '', // Delete text
+                          500, // Delay before next text
+                          'Video Editor',
+                          2000,
+                          '',
+                          500,
+                          'React Enthusiast',
+                          2000,
+                          '',
+                          500,
+                        ]}
+                        speed={50} // Typing speed
+                        deletionSpeed={50} // Deleting speed
+                        repeat={Infinity} // Repeat indefinitely
+                        style={{ display: 'inline-block' }}
+                      />
                     </motion.h2>
                     <motion.p
                       className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl leading-relaxed"
@@ -1090,7 +1108,7 @@ export default function Home() {
                               type="text"
                               id="name"
                               name="name"
-                              className="w-full p-3 rounded-lg bg-background/80 border border-primary/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-colors"
+                              className="w-full p-3 rounded-lg bg-background/80 border border-primary/10 outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-colors"
                               placeholder="John Doe"
                               required
                             />
@@ -1109,7 +1127,7 @@ export default function Home() {
                               type="email"
                               id="email"
                               name="email"
-                              className="w-full p-3 rounded-lg bg-background/80 border border-primary/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-colors"
+                              className="w-full p-3 rounded-lg bg-background/80 border border-primary/10 outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-colors"
                               placeholder="john@example.com"
                               required
                             />
@@ -1128,7 +1146,7 @@ export default function Home() {
                               type="text"
                               id="subject"
                               name="subject"
-                              className="w-full p-3 rounded-lg bg-background/80 border border-primary/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-colors"
+                              className="w-full p-3 rounded-lg bg-background/80 border border-primary/10 outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-colors"
                               placeholder="Project Inquiry"
                               required
                             />
@@ -1147,7 +1165,7 @@ export default function Home() {
                               id="message"
                               name="message"
                               rows={5}
-                              className="w-full p-3 rounded-lg bg-background/80 border border-primary/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-colors"
+                              className="w-full p-3 rounded-lg bg-background/80 border border-primary/10 outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/30 transition-colors"
                               placeholder="Hi Aditya, I'd like to talk about..."
                               required
                             />
