@@ -103,9 +103,9 @@ export default function Contact() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.4 }}
                 >
-                  I`&#39;m currently looking for new opportunities and my inbox is always open.
+                  I&#39;m currently looking for new opportunities and my inbox is always open.
                   Whether you have a question, a project idea, or just want to say hi,
-                  I`&#39;ll do my best to get back to you!
+                  I&#39;ll do my best to get back to you!
                 </motion.p>
 
                 <motion.div
@@ -180,7 +180,7 @@ export default function Contact() {
                       animate={{ opacity: 1, y: 0 }}
                     >
                       <CheckCircle className="h-5 w-5" />
-                      <p>Message sent successfully! I`&#39;ll get back to you soon.</p>
+                      <p>Message sent successfully! I&#39;ll get back to you soon.</p>
                     </motion.div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
