@@ -175,16 +175,92 @@ export default function Contact() {
                   <h3 className="text-2xl font-semibold mb-6">Send me a message</h3>
                   {showSuccess ? (
                     <motion.div
-                      className="bg-green-500/10 border border-green-500/30 rounded-lg p-4 flex items-center gap-3 text-green-500"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
+                      className="relative overflow-hidden bg-gradient-to-r from-green-500/20 via-primary/20 to-green-500/20 border border-green-500/30 rounded-lg p-6 shadow-lg"
+                      initial={{ opacity: 0, y: 10, height: 0 }}
+                      animate={{ 
+                        opacity: 1, 
+                        y: 0, 
+                        height: 'auto',
+                        transition: {
+                          duration: 0.5,
+                          ease: "easeOut"
+                        }
+                      }}
+                      exit={{ 
+                        opacity: 0, 
+                        y: -10, 
+                        height: 0,
+                        transition: { duration: 0.3 }
+                      }}
                     >
-                      <CheckCircle className="h-5 w-5" />
-                      <p>Message sent successfully! I&#39;ll get back to you soon.</p>
+                      <motion.div 
+                        className="absolute -inset-0.5 bg-gradient-to-r from-green-500/10 to-primary/10 rounded-lg blur opacity-30"
+                        animate={{
+                          opacity: [0.3, 0.6, 0.3],
+                          background: [
+                            "linear-gradient(to right, rgba(34, 197, 94, 0.1), rgba(var(--primary), 0.1))",
+                            "linear-gradient(to right, rgba(var(--primary), 0.1), rgba(34, 197, 94, 0.1))",
+                            "linear-gradient(to right, rgba(34, 197, 94, 0.1), rgba(var(--primary), 0.1))"
+                          ]
+                        }}
+                        transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                      />
+                      <div className="relative z-10 flex flex-col items-center text-center py-4">
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ 
+                            delay: 0.2, 
+                            duration: 0.5, 
+                            type: "spring",
+                            stiffness: 200
+                          }}
+                          className="bg-green-500/20 p-4 rounded-full mb-4 relative"
+                        >
+                          <motion.div
+                            className="absolute inset-0 rounded-full bg-green-500/10"
+                            animate={{ scale: [1, 1.2, 1] }}
+                            transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                          />
+                          <CheckCircle className="h-10 w-10 text-green-500 relative z-10" />
+                        </motion.div>
+                        <motion.h3 
+                          className="text-xl font-bold mb-2 text-foreground"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.3 }}
+                        >
+                          Message Sent Successfully!
+                        </motion.h3>
+                        <motion.p 
+                          className="text-muted-foreground mb-4"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.4 }}
+                        >
+                          Thanks for reaching out. I'll get back to you as soon as possible.
+                        </motion.p>
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.5 }}
+                          className="w-full max-w-[200px]"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          <Button 
+                            onClick={() => setShowSuccess(false)}
+                            variant="outline" 
+                            className="w-full border-green-500/30 text-green-600 hover:bg-green-500/10"
+                          >
+                            Send Another Message
+                          </Button>
+                        </motion.div>
+                      </div>
                     </motion.div>
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-6">
-                      <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY" />
+                      <input type="hidden" name="access_key" value="0c5a5cf4-2404-4aef-a0e6-88bc1f001117" />
                       <input type="hidden" name="subject" value="New contact form submission from portfolio" />
                       <input type="hidden" name="from_name" value="Portfolio Contact Form" />
                       <input type="checkbox" name="botcheck" className="hidden" />

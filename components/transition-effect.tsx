@@ -27,19 +27,15 @@ const TransitionEffect = () => {
       <motion.div className='fixed top-0 bottom-0 right-full w-screen h-screen z-[999] bg-primary'
         initial={{ x: "0", width: "100%" }}
         animate={controls}
-        exit={{ x: ["0%", "100%"], width: ["0%", "100%"] }}
-        transition={{ duration: 0.8, ease: "easeInOut" }}
       />
       <motion.div className='fixed top-0 bottom-0 right-full w-screen h-screen z-[998] bg-muted'
         initial={{ x: "100%", width: "100%" }}
         animate={{ x: "0%", width: "0%" }}
-        exit={{ x: ["0%", "100%"], width: ["0%", "100%"] }}
         transition={{ delay: 0.6, duration: 0.8, ease: "easeInOut" }}
       />
       <motion.div className='fixed top-0 bottom-0 right-full w-screen h-screen z-[997] bg-background'
         initial={{ x: "100%", width: "100%" }}
         animate={{ x: "0%", width: "0%" }}
-        exit={{ x: ["0%", "100%"], width: ["0%", "100%"] }}
         transition={{ delay: 0.8, duration: 0.8, ease: "easeInOut" }}
       />
     </>
