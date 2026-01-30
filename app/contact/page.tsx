@@ -177,23 +177,23 @@ export default function Contact() {
                     <motion.div
                       className="relative overflow-hidden bg-gradient-to-r from-green-500/20 via-primary/20 to-green-500/20 border border-green-500/30 rounded-lg p-6 shadow-lg"
                       initial={{ opacity: 0, y: 10, height: 0 }}
-                      animate={{ 
-                        opacity: 1, 
-                        y: 0, 
+                      animate={{
+                        opacity: 1,
+                        y: 0,
                         height: 'auto',
                         transition: {
                           duration: 0.5,
                           ease: "easeOut"
                         }
                       }}
-                      exit={{ 
-                        opacity: 0, 
-                        y: -10, 
+                      exit={{
+                        opacity: 0,
+                        y: -10,
                         height: 0,
                         transition: { duration: 0.3 }
                       }}
                     >
-                      <motion.div 
+                      <motion.div
                         className="absolute -inset-0.5 bg-gradient-to-r from-green-500/10 to-primary/10 rounded-lg blur opacity-30"
                         animate={{
                           opacity: [0.3, 0.6, 0.3],
@@ -209,9 +209,9 @@ export default function Contact() {
                         <motion.div
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
-                          transition={{ 
-                            delay: 0.2, 
-                            duration: 0.5, 
+                          transition={{
+                            delay: 0.2,
+                            duration: 0.5,
                             type: "spring",
                             stiffness: 200
                           }}
@@ -224,7 +224,7 @@ export default function Contact() {
                           />
                           <CheckCircle className="h-10 w-10 text-green-500 relative z-10" />
                         </motion.div>
-                        <motion.h3 
+                        <motion.h3
                           className="text-xl font-bold mb-2 text-foreground"
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
@@ -232,13 +232,13 @@ export default function Contact() {
                         >
                           Message Sent Successfully!
                         </motion.h3>
-                        <motion.p 
+                        <motion.p
                           className="text-muted-foreground mb-4"
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.4 }}
                         >
-                          Thanks for reaching out. I'll get back to you as soon as possible.
+                          Thanks for reaching out. I&apos;ll get back to you as soon as possible.
                         </motion.p>
                         <motion.div
                           initial={{ opacity: 0, y: 10 }}
@@ -248,9 +248,9 @@ export default function Contact() {
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <Button 
+                          <Button
                             onClick={() => setShowSuccess(false)}
-                            variant="outline" 
+                            variant="outline"
                             className="w-full border-green-500/30 text-green-600 hover:bg-green-500/10"
                           >
                             Send Another Message
