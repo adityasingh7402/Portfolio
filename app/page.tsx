@@ -344,7 +344,7 @@ export default function Home() {
                 transition={{ delay: 0.4 }}
               >
                 <p>© {new Date().getFullYear()} Aditya Kumar. All rights reserved.</p>
-                <p className="mt-1">Designed & Built with ❤️ using Next.js & Tailwind CSS</p>
+                <p className="mt-1">Designed & Built with using Next.js & Tailwind CSS</p>
               </motion.div>
             </div>
           </footer>
