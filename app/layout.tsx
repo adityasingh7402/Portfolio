@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { AnimatePresence } from 'framer-motion'
+import Script from "next/script";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -29,6 +30,15 @@ export default function RootLayout({
             {children}
           </AnimatePresence>
         </ThemeProvider>
+
+        {/* Live Chat Widget */}
+        <Script id="chat-widget-config" strategy="afterInteractive">
+          {`window.CHAT_KEY = 'cw_2b1180c05bff63783ed0e546';`}
+        </Script>
+        <Script
+          src="https://email-route-with-clouflare.vercel.app/chat/widget.js"
+          strategy="lazyOnload"
+        />
       </body>
     </html>
   );
