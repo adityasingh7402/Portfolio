@@ -1,15 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence } from 'framer-motion';
 import Script from "next/script";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
-  title: "Aditya Kumar - Full-stack Developer",
-  description: "Personal portfolio of Aditya Kumar, a Full-stack Developer specializing in modern web technologies.",
+  title: "Aditya Kumar - Full-Stack Developer",
+  description: "Portfolio of Aditya Kumar — Full-Stack Developer specializing in modern web technologies.",
 };
 
 export default function RootLayout({
@@ -18,12 +15,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
+    <html lang="en" className="dark" suppressHydrationWarning>
+      <body>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
-          enableSystem
+          defaultTheme="dark"
+          forcedTheme="dark"
           disableTransitionOnChange
         >
           <AnimatePresence mode="wait">
