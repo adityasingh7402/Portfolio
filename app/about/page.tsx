@@ -1,235 +1,185 @@
 'use client';
 import React from 'react';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination, Grid } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'swiper/css/grid';
-import { useState, useEffect } from 'react';
-import { Code, Server, Database, MapPin, Calendar } from 'lucide-react';
+import { Code, Server, Database, Globe, MapPin, Briefcase } from 'lucide-react';
 import { MainNav } from "@/components/main-nav";
 import { SkillBar } from "@/components/skill-bar";
 import Image from 'next/image';
-import Head from 'next/head';
 import { motion } from "framer-motion";
-import { ParticlesBackground } from "@/components/particles-background";
-import { Card } from "@/components/ui/card";
 import TransitionEffect from '@/components/transition-effect';
 
+const EASE = [0.16, 1, 0.3, 1] as const;
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.1, duration: 0.6, ease: EASE },
+  }),
+};
+
+const skills = [
+  { name: 'JavaScript / TypeScript', percentage: 95, icon: <Code className="w-4 h-4" /> },
+  { name: 'React.js / Next.js', percentage: 90, icon: <Code className="w-4 h-4" /> },
+  { name: 'Node.js / Express', percentage: 90, icon: <Server className="w-4 h-4" /> },
+  { name: 'HTML / CSS / Tailwind', percentage: 100, icon: <Globe className="w-4 h-4" /> },
+  { name: 'MongoDB / MySQL', percentage: 95, icon: <Database className="w-4 h-4" /> },
+  { name: 'REST APIs / Integration', percentage: 90, icon: <Server className="w-4 h-4" /> },
+];
+
 export default function About() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [canAnimate, setCanAnimate] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-  useEffect(() => {
-    const handleTransitionComplete = () => {
-      setCanAnimate(true);
-    };
-
-    window.addEventListener('transitionComplete', handleTransitionComplete);
-    setIsVisible(true);
-
-    return () => window.removeEventListener('transitionComplete', handleTransitionComplete);
-  }, []);
-
-  const skills = [
-    { name: 'JavaScript/TypeScript', percentage: 95, icon: <Code className="w-5 h-5 text-primary" /> },
-    { name: 'React.js/Next.js', percentage: 90, icon: <Code className="w-5 h-5 text-primary" /> },
-    { name: 'Node.js', percentage: 90, icon: <Server className="w-5 h-5 text-primary" /> },
-    { name: 'HTML/CSS/Tailwind', percentage: 100, icon: <Code className="w-5 h-5 text-primary" /> },
-    { name: 'MongoDB/MySQL', percentage: 95, icon: <Database className="w-5 h-5 text-primary" /> },
-    { name: 'WordPress', percentage: 95, icon: <Code className="w-5 h-5 text-primary" /> },
-    { name: 'Python', percentage: 80, icon: <Code className="w-5 h-5 text-primary" /> },
-    { name: 'Java', percentage: 80, icon: <Code className="w-5 h-5 text-primary" /> },
-  ];
-
   return (
     <>
-      <Head>
-        <title>About - Aditya Kumar</title>
-        <meta name="description" content="Learn more about Aditya Kumar, a Full-stack Developer specializing in web development." />
-      </Head>
-
-      <div className="min-h-screen relative overflow-hidden bg-background">
+      <div className="min-h-screen bg-[#0A0A0B] text-[#EDEDED]">
         <TransitionEffect />
         <MainNav />
-        <ParticlesBackground />
 
-        {canAnimate && (<main className="pt-14 px-4 md:px-6 lg:px-12 xl:px-0">
-          <section className="min-h-screen py-16">
-            <div className="max-w-6xl mx-auto">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="relative mb-16"
-              >
-                <h2 className="text-3xl md:text-4xl font-bold flex items-center gap-4">
-                  <span className="text-primary">#</span>
-                  <span>About Me</span>
-                </h2>
+        <main className="pt-16">
+          <section className="py-24 px-6 md:px-8">
+            <div className="max-w-6xl mx-auto space-y-24">
+
+              {/* ── Section header ──────────────────────────────────── */}
+              <div>
+                <motion.p
+                  className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-4"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  About
+                </motion.p>
+                <div className="overflow-hidden">
+                  <motion.h1
+                    className="text-5xl md:text-7xl font-bold tracking-[-0.03em] leading-[0.95] text-[#EDEDED]"
+                    initial={{ y: '110%' }}
+                    animate={{ y: 0 }}
+                    transition={{ delay: 0.3, duration: 0.7, ease: EASE }}
+                  >
+                    Full-Stack<br />Developer
+                  </motion.h1>
+                </div>
                 <motion.div
-                  className="absolute -bottom-4 left-0 h-1 bg-gradient-to-r from-primary/50 to-transparent"
-                  initial={{ width: 0 }}
-                  animate={{ width: "50%" }}
-                  transition={{ delay: 0.5, duration: 1 }}
+                  className="h-px w-12 bg-primary mt-6"
+                  initial={{ scaleX: 0, originX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  transition={{ delay: 0.7, duration: 0.5, ease: EASE }}
                 />
-              </motion.div>
+              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
-                <motion.div
-                  className="space-y-6"
-                  initial={{ opacity: 0, x: -50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                  <Card className="bg-card/30 backdrop-blur-sm p-6 border-primary/20">
-                    <motion.p
-                      className="text-base leading-relaxed text-muted-foreground"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 }}
-                    >
-                      I&#39;m a passionate full-stack developer with experience in building web applications
-                      using modern technologies. My journey began with an internship at eWeblink Web Design
-                      and Development, where I honed my skills in HTML, CSS, JavaScript, and WordPress.
-                    </motion.p>
-                  </Card>
-
-                  <Card className="bg-card/30 backdrop-blur-sm p-6 border-primary/20">
-                    <motion.p
-                      className="text-base leading-relaxed text-muted-foreground"
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.4 }}
-                    >
-                      Currently working as a freelance developer, I&#39;ve expanded my expertise to include
-                      Node.js, Next.js, MongoDB, APIs, and SQL. I focus on creating accessible,
-                      user-friendly applications that solve real-world problems.
-                    </motion.p>
-                  </Card>
-
+              {/* ── Bio + Image ─────────────────────────────────────── */}
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+                <div className="space-y-8">
                   <motion.div
-                    className="flex flex-wrap gap-3 mt-6"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
+                    className="glass-card rounded-md p-6 space-y-4"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    custom={0}
                   >
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      className="flex items-center gap-2 text-sm bg-primary/10 px-3 py-1.5 rounded-full"
-                    >
-                      <MapPin className="h-4 w-4 text-primary" />
-                      <span>New Delhi, India</span>
-                    </motion.div>
-                    <motion.div
-                      whileHover={{ scale: 1.05 }}
-                      className="flex items-center gap-2 text-sm bg-primary/10 px-3 py-1.5 rounded-full"
-                    >
-                      <Calendar className="h-4 w-4 text-primary" />
-                      <span>Available for Freelance</span>
-                    </motion.div>
+                    <p className="text-[#A1A1AA] leading-relaxed">
+                      Passionate full-stack developer with hands-on experience building production web applications
+                      from the ground up. My journey started with an internship at eWeblink Web Design & Development,
+                      where I sharpened my skills in front-end development and web architecture.
+                    </p>
                   </motion.div>
 
                   <motion.div
-                    className="space-y-6 mt-12"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.6 }}
+                    className="glass-card rounded-md p-6"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    custom={1}
                   >
-                    <h3 className="text-2xl font-semibold text-foreground flex items-center gap-2">
-                      <span className="text-primary">#</span> Technical Skills
-                    </h3>
-                    <Swiper
-                      slidesPerView={1}
-                      spaceBetween={10}
-                      autoplay={{
-                        delay: 2500,
-                        disableOnInteraction: false,
-                      }}
-                      pagination={{
-                        clickable: true,
-                        el: '.swiper-pagination',
-                        bulletClass: 'swiper-pagination-bullet',
-                        bulletActiveClass: 'swiper-pagination-bullet-active',
-                      }}
-                      breakpoints={{
-                        1024: {
-                          slidesPerView: 2,
-                          grid: {
-                            rows: 2,
-                            fill: 'row',
-                          },
-                          spaceBetween: 20,
-                        },
-                      }}
-                      modules={[Autoplay, Pagination, Grid]}
-                      className="mySwiper"
-                    >
-                      {skills.map((skill, index) => (
-                        <SwiperSlide key={skill.name}>
-                          <motion.div
-                            className="h-full bg-card/30 backdrop-blur p-4 rounded-lg border border-primary/10 hover:border-primary/30 transition-colors"
-                            whileHover={{ scale: 1.02, boxShadow: "0px 5px 15px rgba(0,0,0,0.1)" }}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{ delay: 0.1 * index }}
-                          >
-                            <div className="flex items-center gap-3 mb-2">
-                              <motion.div
-                                animate={{ rotate: [0, 10, 0] }}
-                                transition={{ repeat: Infinity, duration: 2, delay: index * 0.2 }}
-                              >
-                                {skill.icon}
-                              </motion.div>
-                              <h4 className="font-medium text-foreground">{skill.name}</h4>
-                            </div>
-                            <SkillBar
-                              name={skill.name}
-                              percentage={skill.percentage}
-                            />
-                          </motion.div>
-                        </SwiperSlide>
-                      ))}
-                    </Swiper>
+                    <p className="text-[#A1A1AA] leading-relaxed">
+                      Currently working as a freelance full-stack developer, architecting and shipping applications
+                      with Node.js, Next.js, MongoDB, and REST APIs. Focused on performance, clean code, and
+                      delivering measurable results for real-world users.
+                    </p>
                   </motion.div>
-                </motion.div>
 
-                <motion.div
-                  className="relative group"
-                  initial={{ opacity: 0, x: 50 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  whileHover={{ rotate: 2 }}
-                >
+                  {/* Meta badges */}
                   <motion.div
-                    className="relative w-full aspect-square rounded-lg overflow-hidden shadow-xl"
-                    whileHover={{ scale: 1.02 }}
+                    className="flex flex-wrap gap-3"
+                    variants={fadeUp}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    custom={2}
                   >
+                    {[
+                      { icon: <MapPin className="h-3.5 w-3.5" />, label: 'New Delhi, India' },
+                      { icon: <Briefcase className="h-3.5 w-3.5" />, label: 'Open to Opportunities' },
+                    ].map((b) => (
+                      <span
+                        key={b.label}
+                        className="flex items-center gap-1.5 text-xs font-medium text-[#A1A1AA] border border-white/10 px-3 py-1.5 rounded-md"
+                      >
+                        <span className="text-primary">{b.icon}</span>
+                        {b.label}
+                      </span>
+                    ))}
+                  </motion.div>
+                </div>
+
+                {/* Image */}
+                <motion.div
+                  className="relative"
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.7, ease: EASE }}
+                >
+                  <div className="relative w-full aspect-square rounded-md overflow-hidden border border-white/10">
                     <Image
-                      src="about.jpg"
+                      src="/about.jpg"
                       alt="Developer workspace"
                       fill
-                      className="object-cover transition-transform group-hover:scale-105 duration-700"
+                      className="object-cover grayscale hover:grayscale-0 transition-all duration-700"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-60 group-hover:opacity-40 transition-opacity"></div>
-                  </motion.div>
-                  <motion.div
-                    className="absolute -inset-2 border-2 border-primary rounded-lg -z-10"
-                    animate={{
-                      x: [0, 5, 0],
-                      y: [0, 5, 0],
-                    }}
-                    transition={{ repeat: Infinity, duration: 5, ease: "easeInOut" }}
-                  ></motion.div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0B]/50 to-transparent pointer-events-none" />
+                  </div>
                 </motion.div>
               </div>
+
+              {/* ── Skills ──────────────────────────────────────────── */}
+              <div>
+                <motion.div
+                  className="mb-12"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, ease: EASE }}
+                >
+                  <p className="text-xs font-semibold tracking-[0.2em] uppercase text-primary mb-3">Expertise</p>
+                  <h2 className="text-3xl md:text-4xl font-bold tracking-[-0.03em] text-[#EDEDED]">Technical Skills</h2>
+                </motion.div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {skills.map((skill, i) => (
+                    <motion.div
+                      key={skill.name}
+                      className="glass-card rounded-md p-5 hover:border-white/20 transition-colors"
+                      variants={fadeUp}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true }}
+                      custom={i}
+                    >
+                      <div className="flex items-center gap-2 mb-3 text-primary">
+                        {skill.icon}
+                        <span className="text-sm font-medium text-[#EDEDED]">{skill.name}</span>
+                      </div>
+                      <SkillBar name={skill.name} percentage={skill.percentage} />
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
             </div>
           </section>
-        </main>)}
+        </main>
       </div>
     </>
   );
