@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, Variants } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { ModeToggle } from './mode-toggle';
 import { Github, Mail, Linkedin, Instagram } from 'lucide-react';
@@ -28,13 +28,13 @@ export function MainNav() {
   }, []);
 
   // Hamburger menu animations
-  const menuVariants = {
+  const menuVariants: Variants = {
     open: { opacity: 1, x: 0 },
     closed: { opacity: 0, x: "100%" }
   };
 
   // Staggered animation for menu items
-  const menuItemVariants = {
+  const menuItemVariants: Variants = {
     open: {
       opacity: 1,
       y: 0,
