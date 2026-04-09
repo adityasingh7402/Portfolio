@@ -33,10 +33,10 @@ export default function RootLayout({
 
         {/* Live Chat Widget */}
         <Script id="chat-widget-config" strategy="afterInteractive">
-          {`window.CHAT_KEY = 'cw_2b1180c05bff63783ed0e546';`}
+          {`window.CHAT_KEY = 'cw_c1936afccf3e749b9bf54617';`}
         </Script>
         <Script
-          src="https://email-route-with-clouflare.vercel.app/chat/widget.js"
+          src="https://syncsupport.app/chat/widget.js"
           strategy="lazyOnload"
         />
       </body>
