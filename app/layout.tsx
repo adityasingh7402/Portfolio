@@ -33,7 +33,7 @@ export default function RootLayout({
 
         {/* Live Chat Widget */}
         <Script id="chat-widget-config" strategy="afterInteractive">
-          {`window.CHAT_KEY = 'cw_c1936afccf3e749b9bf54617';`}
+          {`window.CHAT_KEY = 'cw_d00385e832271d8a249f4df4';`}
         </Script>
         <Script
           src="https://syncsupport.app/chat/widget.js"
